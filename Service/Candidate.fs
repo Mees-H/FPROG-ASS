@@ -23,11 +23,15 @@ let getCandidate (name: string) : HttpHandler =
         task {
             match Name.make name with
             | Error message -> 
-                return! RequestErrors.badRequest (text "Invalid name") earlyReturn ctx
+                return! RequestErrors.badRequest (text message) earlyReturn ctx
             | Ok name ->
                 let store = ctx.GetService<ICandidateDataAccess>()
-                let candidate = getCandidate store (name.ToString())
-                return! ctx.WriteStringAsync (string candidate)
+                let candidate = getCandidate store (Name.value name)
+                match candidate with
+                | None -> 
+                    return! RequestErrors.notFound (text "Candidate doesn't exist") earlyReturn ctx
+                | Some candidate ->
+                    return! ThothSerializer.RespondJson candidate Serialization.Candidate.encode next ctx
         }
 
 let candidateRoutes: HttpHandler =

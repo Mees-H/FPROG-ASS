@@ -15,4 +15,6 @@ module Name =
         rawName
         |> Validation.matches validName "Name must only contain letters"
         |> Result.map Name
+
+    let value (Name name) = name
     
