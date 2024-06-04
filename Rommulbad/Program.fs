@@ -9,7 +9,9 @@ open Thoth.Json.Net
 open Rommulbad
 open Rommulbad.Service.Routes
 open Rommulbad.Application.Candidate
+open Rommulbad.Application.Session
 open Rommulbad.Data.Candidate
+open Rommulbad.Data.Session
 
 let configureApp (app: IApplicationBuilder) =
     // Add Giraffe to the ASP.NET Core pipeline
@@ -20,6 +22,7 @@ let configureServices (services: IServiceCollection) =
     services
         .AddGiraffe()
         .AddSingleton<ICandidateDataAccess>(candidatePersistance)
+        .AddSingleton<ISessionDataAccess>(sessionPersistance)
         .AddSingleton<Json.ISerializer>(ThothSerializer(skipNullField = false, caseStrategy = CaseStrategy.CamelCase))
     |> ignore
 

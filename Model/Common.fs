@@ -17,4 +17,18 @@ module Name =
         |> Result.map Name
 
     let value (Name name) = name
+
+type Diploma = private | Diploma of string
+
+let (|Diploma|) (Diploma diploma) = diploma
+
+[<RequireQualifiedAccess>]
+module Diploma =
+
+    let make rawDiploma =
+        let shallowOk = Validation.shallowOk rawDiploma
+        let minMinutes = Validation.minMinutes rawDiploma
+        Ok (shallowOk, minMinutes)
+
+    let value (Diploma diploma) = diploma
     

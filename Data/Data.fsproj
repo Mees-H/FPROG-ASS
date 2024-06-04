@@ -8,6 +8,7 @@
   <ItemGroup>
     <Compile Include="Database.fs" />
     <Compile Include="Store.fs" />
+    <Compile Include="Session.fs" />
     <Compile Include="Candidate.fs" />
   </ItemGroup>
 

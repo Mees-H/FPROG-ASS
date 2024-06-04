@@ -4,7 +4,6 @@ open Rommulbad.Application.Candidate
 open Rommulbad.Model.Model
 open Rommulbad.Data.Database
 open Rommulbad.Data.Store
-open Rommulbad.Model.Common
 
 let candidatePersistance = 
     { new ICandidateDataAccess with

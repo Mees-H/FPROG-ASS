@@ -28,5 +28,5 @@ module Session =
     let decode: Decoder<Session> =
         Decode.object (fun get ->
             { Deep = get.Required.Field "deep" Decode.bool
-              Date = get.Required.Field "date" Decode.datetime
+              Date = get.Required.Field "date" Decode.datetimeUtc
               Minutes = get.Required.Field "amount" Decode.int })
