@@ -1,7 +1,7 @@
-module Rommulbad.Store
+module Rommulbad.Data.Store
 
 open System
-open Rommulbad.Database
+open Rommulbad.Data.Database
 
 /// Here a store is created that contains the following tables with the following attributes
 ///
@@ -63,3 +63,5 @@ type Store() =
           "999-ZZZZ", "Margeet van Lankerveld" ]
         |> Seq.map (fun t -> fst t, t)
         |> InMemoryDatabase.ofSeq
+
+let store = Store()

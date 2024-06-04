@@ -7,11 +7,12 @@ open Giraffe
 open Thoth.Json.Giraffe
 open Thoth.Json.Net
 open Rommulbad
-open Rommulbad.Store
+open Rommulbad.Data.Store
+open Rommulbad.Service.Routes
 
 let configureApp (app: IApplicationBuilder) =
     // Add Giraffe to the ASP.NET Core pipeline
-    app.UseGiraffe Web.routes
+    app.UseGiraffe routes
 
 let configureServices (services: IServiceCollection) =
     // Add Giraffe dependencies

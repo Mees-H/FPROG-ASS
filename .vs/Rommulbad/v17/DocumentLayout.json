@@ -1,12 +1,122 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\rommulbad\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A532DF31-1A63-4B60-90A3-B96AFBC8D361}|Service\\Service.fsproj|c:\\users\\mees\\source\\repos\\fprog-ass\\service\\session.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}",
+      "RelativeMoniker": "D:0:0:{A532DF31-1A63-4B60-90A3-B96AFBC8D361}|Service\\Service.fsproj|solutionrelative:service\\session.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{829D5867-C721-4920-8B68-4279731386B4}|Model\\Model.fsproj|c:\\users\\mees\\source\\repos\\fprog-ass\\model\\common.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}",
+      "RelativeMoniker": "D:0:0:{829D5867-C721-4920-8B68-4279731386B4}|Model\\Model.fsproj|solutionrelative:model\\common.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8881D01-BB62-43BE-B47D-B11DEB32AD48}|Data\\Data.fsproj|c:\\users\\mees\\source\\repos\\fprog-ass\\data\\database.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}",
+      "RelativeMoniker": "D:0:0:{A8881D01-BB62-43BE-B47D-B11DEB32AD48}|Data\\Data.fsproj|solutionrelative:data\\database.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8881D01-BB62-43BE-B47D-B11DEB32AD48}|Data\\Data.fsproj|c:\\users\\mees\\source\\repos\\fprog-ass\\data\\candidate.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}",
+      "RelativeMoniker": "D:0:0:{A8881D01-BB62-43BE-B47D-B11DEB32AD48}|Data\\Data.fsproj|solutionrelative:data\\candidate.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F7E1E47-C5ED-4497-A828-EA57C28D3845}|Application\\Application.fsproj|c:\\users\\mees\\source\\repos\\fprog-ass\\application\\candidate.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}",
+      "RelativeMoniker": "D:0:0:{6F7E1E47-C5ED-4497-A828-EA57C28D3845}|Application\\Application.fsproj|solutionrelative:application\\candidate.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A532DF31-1A63-4B60-90A3-B96AFBC8D361}|Service\\Service.fsproj|c:\\users\\mees\\source\\repos\\fprog-ass\\service\\candidate.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}",
+      "RelativeMoniker": "D:0:0:{A532DF31-1A63-4B60-90A3-B96AFBC8D361}|Service\\Service.fsproj|solutionrelative:service\\candidate.fs||{8A5AA6CF-46E3-4520-A70A-7393D15233E9}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Common.fs",
+              "DocumentMoniker": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Model\\Common.fs",
+              "RelativeDocumentMoniker": "Model\\Common.fs",
+              "ToolTip": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Model\\Common.fs",
+              "RelativeToolTip": "Model\\Common.fs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-06-04T13:50:55.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Session.fs",
+              "DocumentMoniker": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Service\\Session.fs",
+              "RelativeDocumentMoniker": "Service\\Session.fs",
+              "ToolTip": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Service\\Session.fs",
+              "RelativeToolTip": "Service\\Session.fs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAABUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-06-04T13:49:31.677Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Candidate.fs",
+              "DocumentMoniker": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Service\\Candidate.fs",
+              "RelativeDocumentMoniker": "Service\\Candidate.fs",
+              "ToolTip": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Service\\Candidate.fs",
+              "RelativeToolTip": "Service\\Candidate.fs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAWwB4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-06-04T13:49:22.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Candidate.fs",
+              "DocumentMoniker": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Application\\Candidate.fs",
+              "RelativeDocumentMoniker": "Application\\Candidate.fs",
+              "ToolTip": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Application\\Candidate.fs",
+              "RelativeToolTip": "Application\\Candidate.fs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-06-04T13:48:30.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Database.fs",
+              "DocumentMoniker": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Data\\Database.fs",
+              "RelativeDocumentMoniker": "Data\\Database.fs",
+              "ToolTip": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Data\\Database.fs",
+              "RelativeToolTip": "Data\\Database.fs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-06-04T13:47:21.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Candidate.fs",
+              "DocumentMoniker": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Data\\Candidate.fs",
+              "RelativeDocumentMoniker": "Data\\Candidate.fs",
+              "ToolTip": "C:\\Users\\Mees\\source\\repos\\FPROG-ASS\\Data\\Candidate.fs",
+              "RelativeToolTip": "Data\\Candidate.fs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-06-03T20:13:25.653Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

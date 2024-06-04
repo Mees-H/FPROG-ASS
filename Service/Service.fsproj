@@ -1,29 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Web.fs" />
-    <Compile Include="Program.fs" />
+    <Compile Include="Serialization.fs" />
+    <Compile Include="Session.fs" />
+    <Compile Include="Candidate.fs" />
+    <Compile Include="Routes.fs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Giraffe" Version="6.4.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Thoth.Json.Giraffe" Version="6.0.0" />
     <PackageReference Include="Thoth.Json.Net" Version="12.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data\Data.fsproj" />
-    <ProjectReference Include="..\Service\Service.fsproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="8.0.300" />
+    <ProjectReference Include="..\Application\Application.fsproj" />
   </ItemGroup>
 
 </Project>

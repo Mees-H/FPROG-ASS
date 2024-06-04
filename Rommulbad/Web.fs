@@ -1,49 +1,12 @@
 module Rommulbad.Web
 
-open Rommulbad
+(*open Rommulbad
 open Rommulbad.Database
 open Rommulbad.Store
 open Giraffe
 open Thoth.Json.Net
 open Thoth.Json.Giraffe
 
-
-let getCandidates: HttpHandler =
-    fun next ctx ->
-        task {
-            let store = ctx.GetService<Store>()
-
-            let candidates =
-                InMemoryDatabase.all store.candidates
-                |> Seq.map (fun (name, _, gId, dpl) ->
-                    { Candidate.Name = name
-                      GuardianId = gId
-                      Diploma = dpl })
-
-            return! ThothSerializer.RespondJsonSeq candidates Candidate.encode next ctx
-        }
-
-let getCandidate (name: string) : HttpHandler =
-    fun next ctx ->
-        task {
-            let store = ctx.GetService<Store>()
-
-            let candidate = InMemoryDatabase.lookup name store.candidates
-
-
-            match candidate with
-            | None -> return! RequestErrors.NOT_FOUND "Employee not found!" next ctx
-            | Some(name, _, gId, dpl) ->
-                return!
-                    ThothSerializer.RespondJson
-                        { Name = name
-                          GuardianId = gId
-                          Diploma = dpl }
-                        Candidate.encode
-                        next
-                        ctx
-
-        }
 
 let addSession (name: string) : HttpHandler =
     fun next ctx ->
@@ -147,16 +110,7 @@ let getTotalEligibleMinutes (name: string, diploma: string) : HttpHandler =
                 |> Seq.sum
 
             return! ThothSerializer.RespondJson total Encode.int next ctx
-        }
+        }*)
 
 
 
-let routes: HttpHandler =
-    choose
-        [ GET >=> route "/candidate" >=> getCandidates
-          GET >=> routef "/candidate/%s" getCandidate
-          POST >=> routef "/candidate/%s/session" addSession
-          GET >=> routef "/candidate/%s/session" getSessions
-          GET >=> routef "/candidate/%s/session/total" getTotalMinutes
-          GET >=> routef "/candidate/%s/session/%s" getEligibleSessions
-          GET >=> routef "/candidate/%s/session/%s/total" getTotalEligibleMinutes ]
