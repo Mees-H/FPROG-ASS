@@ -8,6 +8,27 @@ open Rommulbad.Model.Common
 
 open Rommulbad.Application.Candidate
 
+let addCandidate : HttpHandler =
+    fun next ctx ->
+        task {
+            let! candidate = ThothSerializer.ReadBody ctx Serialization.Candidate.decode
+
+            match candidate with
+            | Error message -> 
+                return! RequestErrors.badRequest (text message) earlyReturn ctx
+            | Ok { Name = name
+                   GuardianId = guardianId
+                   Diploma = diploma } ->
+                let store = ctx.GetService<ICandidateDataAccess>()
+
+                let candidate = addCandidate store name guardianId diploma
+                match candidate with
+                | None -> 
+                    return! RequestErrors.badRequest (text "Something went wrong") earlyReturn ctx
+                | Some candidate ->
+                    return! ThothSerializer.RespondJson candidate Serialization.Candidate.encode next ctx
+        }
+
 let getCandidates: HttpHandler =
     fun next ctx ->
         task {

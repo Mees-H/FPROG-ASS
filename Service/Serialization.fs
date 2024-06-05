@@ -2,6 +2,7 @@
 
 open Thoth.Json.Net
 open Rommulbad.Model.Model
+open Newtonsoft.Json
 
 module Candidate =
     let encode: Encoder<Candidate> =
@@ -30,3 +31,15 @@ module Session =
             { Deep = get.Required.Field "deep" Decode.bool
               Date = get.Required.Field "date" Decode.datetimeUtc
               Minutes = get.Required.Field "amount" Decode.int })
+
+module Guardian =
+    let encode: Encoder<Guardian> =
+        fun guardian ->
+            Encode.object
+                [ "id", Encode.string guardian.Id
+                  "name", Encode.string guardian.Name ]
+
+    let decode: Decoder<Guardian> =
+        Decode.object (fun get ->
+            { Id = get.Required.Field "id" Decode.string
+              Name = get.Required.Field "name" Decode.string })
