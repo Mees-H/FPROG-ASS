@@ -55,7 +55,20 @@ let getCandidate (name: string) : HttpHandler =
                     return! ThothSerializer.RespondJson candidate Serialization.Candidate.encode next ctx
         }
 
+let putCandidateDiploma (name: string, diploma: string) : HttpHandler =
+    fun next ctx ->
+        task {
+            let store = ctx.GetService<ICandidateDataAccess>()
+            let candidate = putCandidateDiploma store name diploma
+            match candidate with
+            | None -> 
+                return! RequestErrors.notFound (text "Candidate doesn't exist") earlyReturn ctx
+            | Some candidate ->
+                return! ThothSerializer.RespondJson candidate Serialization.Candidate.encode next ctx
+        }
+
 let candidateRoutes: HttpHandler =
     choose
         [ GET >=> route "/candidate" >=> getCandidates
-          GET >=> routef "/candidate/%s" getCandidate ]
+          GET >=> routef "/candidate/%s" getCandidate
+          PUT >=> routef "/candidate/%s/diploma/%s" putCandidateDiploma ]

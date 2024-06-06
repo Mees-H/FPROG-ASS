@@ -7,6 +7,7 @@ type ICandidateDataAccess =
     abstract AddCandidate: string -> string -> string -> Option<Candidate>
     abstract GetCandidates: unit -> List<Candidate>
     abstract GetCandidate: string -> Option<Candidate>
+    abstract PutCandidateDiploma: string -> string -> Option<Candidate>
 
 let addCandidate (store: ICandidateDataAccess) (name: string) (guardianId: string) (diploma: string): Option<Candidate> =
     store.AddCandidate (name) (guardianId) (diploma)
@@ -16,3 +17,6 @@ let getCandidates (store: ICandidateDataAccess): List<Candidate> =
 
 let getCandidate (store: ICandidateDataAccess) (name: string): Option<Candidate> =
     store.GetCandidate (name)
+
+let putCandidateDiploma (store: ICandidateDataAccess) (name: string) (diploma: string): Option<Candidate> =
+    store.PutCandidateDiploma (name) (diploma)

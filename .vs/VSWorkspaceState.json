@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Model"
   ],
-  "SelectedNode": "\\Rommulbad.sln",
+  "SelectedNode": "\\Model\\Model.fs",
   "PreviewInSolutionExplorer": false
 }

@@ -30,4 +30,15 @@ let candidatePersistance =
             | Some(name, gId, dpl) -> Some { Candidate.Name = name
                                              GuardianId = gId
                                              Diploma = dpl }
+
+        member this.PutCandidateDiploma (name: string) (dpl: string) = 
+            let candidate = InMemoryDatabase.lookup name store.candidates
+            match candidate with
+            | None -> None
+            | Some (_, gId, _) ->                  
+                let result = InMemoryDatabase.update name (name, gId, dpl) store.candidates
+                Some { Candidate.Name = name
+                       GuardianId = gId
+                       Diploma = dpl }
+    
     }
