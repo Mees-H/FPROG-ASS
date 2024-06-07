@@ -6,9 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Model.fs" />
     <Compile Include="Validation.fs" />
     <Compile Include="Common.fs" />
-    <Compile Include="Model.fs" />
   </ItemGroup>
 
 </Project>

@@ -55,5 +55,16 @@ let sessionPersistance =
             |> Seq.filter (fun (_, _, _, minutes) -> minutes >= minMinutes)
             |> Seq.map (fun (_, _, _, minutes) -> minutes)
             |> Seq.sum
+
+        member this.GetTotalEligibleMinutesAllCandidatesGrouped (names: List<string>) (shallowOk: bool) (minMinutes: int) = 
+            InMemoryDatabase.all store.sessions
+            |> Seq.filter (fun (n, _, _, _) -> List.exists (fun name -> name = n) names)
+            /// If shallowOk is false then filter out all sessions with deep = false
+            |> Seq.filter (fun (_, deep, _, _) -> shallowOk || deep)
+            /// Filter out all sessions with minutes < minMinutes
+            |> Seq.filter (fun (_, _, _, minutes) -> minutes >= minMinutes)
+            |> Seq.groupBy (fun (n, _, _, _) -> n)
+            |> Seq.map (fun (name, sessions) -> name, Seq.sumBy (fun (_, _, _, minutes) -> minutes) sessions)
+            |> Seq.toList
     }
 

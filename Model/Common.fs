@@ -31,4 +31,16 @@ module Diploma =
         Ok (shallowOk, minMinutes)
 
     let value (Diploma diploma) = diploma
-    
+
+type Qualified = private | Qualified of List<string>
+
+let (|Qualified|) (Qualified qualified) = qualified
+
+[<RequireQualifiedAccess>]
+module Qualified =
+
+    let make diploma name minutes =
+        let qualified = Validation.qualified (diploma) (name) (minutes)
+        Ok (qualified)
+
+    let value (Qualified qualified) = qualified

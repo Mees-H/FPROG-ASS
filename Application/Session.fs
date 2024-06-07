@@ -9,6 +9,7 @@ type ISessionDataAccess =
     abstract GetTotalMinutes: string -> int
     abstract GetEligibleSessions: string -> bool -> int -> List<Session>
     abstract GetTotalEligibleMinutes: string -> bool -> int -> int
+    abstract GetTotalEligibleMinutesAllCandidatesGrouped: List<string> -> bool -> int -> List<string * int>
 
 let addSession (store: ISessionDataAccess) (name: string) (deep: bool) (date: DateTime) (minutes: int): Option<Session> =
     store.AddSession name deep date minutes
@@ -24,3 +25,6 @@ let getEligibleSessions (store: ISessionDataAccess) (name: string) (shallowOk: b
 
 let getTotalEligibleMinutes (store: ISessionDataAccess) (name: string) (shallowOk: bool) (minMinutes: int): int =
     store.GetTotalEligibleMinutes name shallowOk minMinutes
+
+let getTotalEligibleMinutesAllCandidatesGrouped (store: ISessionDataAccess) (candidates: List<string>) (shallowOk: bool) (minMinutes: int): List<string * int> =
+    store.GetTotalEligibleMinutesAllCandidatesGrouped candidates shallowOk minMinutes

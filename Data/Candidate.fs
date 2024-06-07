@@ -31,6 +31,10 @@ let candidatePersistance =
                                              GuardianId = gId
                                              Diploma = dpl }
 
+        member this.GetEligibleMinutesPerCandidate (candidates: List<Candidate>) (minutes: List<int>) =
+            List.zip candidates minutes
+
+
         member this.PutCandidateDiploma (name: string) (dpl: string) = 
             let candidate = InMemoryDatabase.lookup name store.candidates
             match candidate with
@@ -40,5 +44,5 @@ let candidatePersistance =
                 Some { Candidate.Name = name
                        GuardianId = gId
                        Diploma = dpl }
-    
+
     }
