@@ -41,6 +41,9 @@ module Qualified =
 
     let make diploma name minutes =
         let qualified = Validation.qualified (diploma) (name) (minutes)
-        Ok (qualified)
+        match qualified with
+        | "" -> Error $"{name} is not qualified for diploma {diploma}"
+        | _ -> Ok (qualified)
+
 
     let value (Qualified qualified) = qualified

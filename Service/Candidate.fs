@@ -83,14 +83,25 @@ let getQualifiedCandidates (diploma: string) : HttpHandler =
 
 let putCandidateDiploma (name: string, diploma: string) : HttpHandler =
     fun next ctx ->
-        task {
-            let store = ctx.GetService<ICandidateDataAccess>()
-            let candidate = putCandidateDiploma store name diploma
-            match candidate with
-            | None -> 
-                return! RequestErrors.notFound (text "Candidate doesn't exist") earlyReturn ctx
-            | Some candidate ->
-                return! ThothSerializer.RespondJson candidate Serialization.Candidate.encode next ctx
+        task {            
+            match Diploma.make diploma with
+            | Error message -> 
+                return! RequestErrors.badRequest (text message) next ctx
+            | Ok (shallowOk, minMinutes) ->
+                let candidateStore = ctx.GetService<ICandidateDataAccess>()
+                let sessionStore = ctx.GetService<ISessionDataAccess>()
+                let minutes = getTotalEligibleMinutes sessionStore name shallowOk minMinutes
+                let qualified = Qualified.make diploma name minutes
+                match qualified with
+                | Error message -> 
+                    return! RequestErrors.badRequest (text message) next ctx
+                | Ok _ ->
+                    let candidate = putCandidateDiploma candidateStore name diploma
+                    match candidate with
+                    | None -> 
+                        return! RequestErrors.notFound (text "Candidate doesn't exist") earlyReturn ctx
+                    | Some candidate ->
+                        return! ThothSerializer.RespondJson candidate Serialization.Candidate.encode next ctx
         }
 
 let candidateRoutes: HttpHandler =
