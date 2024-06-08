@@ -23,3 +23,14 @@ let qualified (diploma: string) (name: string) (minutes: int) =
     | minutes when minutes >= 150 && (diploma = "B") -> name
     | minutes when minutes >= 120 && (diploma = "A") -> name
     | _ -> ""
+
+let checkDupe (name: string) (names: List<string>) (guardianId: string) (guardianIds: List<string>) =
+    match names with
+    | names when List.contains name names -> Error $"{name} already exists"
+    | _ -> Ok name
+
+let checkValidMinutes (minutes: int) =
+    match minutes with
+    | minutes when minutes < 0 -> Error "Number of minutes cannot be negative"
+    | minutes when minutes > 30 -> Error "Number of minutes cannot be larger than 30"
+    | _ -> Ok minutes

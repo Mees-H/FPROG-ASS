@@ -20,14 +20,30 @@ let addCandidate : HttpHandler =
             | Ok { Name = name
                    GuardianId = guardianId
                    Diploma = diploma } ->
-                let store = ctx.GetService<ICandidateDataAccess>()
+                match Name.make name with
+                | Error message -> 
+                    return! RequestErrors.badRequest (text message) earlyReturn ctx
+                | Ok _ ->
+                    match GuardianId.make guardianId with
+                    | Error message -> 
+                        return! RequestErrors.badRequest (text message) earlyReturn ctx
+                    | Ok _ ->
+                        let candidates = getCandidates (ctx.GetService<ICandidateDataAccess>())
+                        let names = candidates |> List.map (fun candidate -> candidate.Name)
+                        let guardianIds = candidates |> List.map (fun candidate -> candidate.GuardianId)
+                        let result = DupeCandidate.make name names guardianId guardianIds
+                        match result with
+                        | Error message -> 
+                            return! RequestErrors.badRequest (text message) earlyReturn ctx
+                        | Ok _ ->
+                        let store = ctx.GetService<ICandidateDataAccess>()
 
-                let candidate = addCandidate store name guardianId diploma
-                match candidate with
-                | None -> 
-                    return! RequestErrors.badRequest (text "Something went wrong") earlyReturn ctx
-                | Some candidate ->
-                    return! ThothSerializer.RespondJson candidate Serialization.Candidate.encode next ctx
+                        let candidate = addCandidate store name guardianId diploma
+                        match candidate with
+                        | None -> 
+                            return! RequestErrors.badRequest (text "Something went wrong") earlyReturn ctx
+                        | Some candidate ->
+                            return! ThothSerializer.RespondJson candidate Serialization.Candidate.encode next ctx
         }
 
 let getCandidates: HttpHandler =
@@ -40,7 +56,7 @@ let getCandidates: HttpHandler =
             return! ThothSerializer.RespondJsonSeq candidates Serialization.Candidate.encode next ctx
         }
 
-let getCandidate (name: string) : HttpHandler =
+let getCandidate (name: string): HttpHandler =
     fun next ctx ->
         task {
             match Name.make name with
@@ -70,7 +86,7 @@ let getQualifiedCandidates (diploma: string) : HttpHandler =
                 let names = candidates |> List.map (fun candidate -> candidate.Name)
 
                 let minutesPerCandidate = getTotalEligibleMinutesAllCandidatesGrouped sessionStore names shallowOk minMinutes
-                let qualified = minutesPerCandidate |> List.map (fun (names, minutes) -> Qualified.make diploma names minutes)
+                let qualified = minutesPerCandidate |> List.map (fun (name, minutes) -> Qualified.make diploma name minutes)
                 let qualifiedNames = 
                     qualified 
                     |> List.map (function

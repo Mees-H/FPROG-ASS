@@ -3,6 +3,7 @@
 open Giraffe
 open Thoth.Json.Net
 open Thoth.Json.Giraffe
+open Rommulbad.Model.Common
 
 open Rommulbad.Application.Guardian
 open Rommulbad.Model.Common
@@ -18,14 +19,22 @@ let addGuardian : HttpHandler =
                 return! RequestErrors.badRequest (text message) next ctx
             | Ok { Id = id
                    Name = name } ->
-                let store = ctx.GetService<IGuardianDataAccess>()
+                match GuardianId.make id with
+                | Error message -> 
+                    return! RequestErrors.badRequest (text message) next ctx
+                | Ok _ ->
+                    match Name.make name with
+                    | Error message -> 
+                        return! RequestErrors.badRequest (text message) next ctx
+                    | Ok _ ->
+                        let store = ctx.GetService<IGuardianDataAccess>()
 
-                let guardian = addGuardian store id name
-                match guardian with
-                | None -> 
-                    return! RequestErrors.badRequest (text "Something went wrong") earlyReturn ctx
-                | Some guardian ->
-                    return! ThothSerializer.RespondJson guardian Serialization.Guardian.encode next ctx
+                        let guardian = addGuardian store id name
+                        match guardian with
+                        | None -> 
+                            return! RequestErrors.badRequest (text "Something went wrong") earlyReturn ctx
+                        | Some guardian ->
+                            return! ThothSerializer.RespondJson guardian Serialization.Guardian.encode next ctx
         }
 
 let guardianRoutes: HttpHandler =
